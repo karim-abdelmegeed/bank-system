@@ -4,7 +4,7 @@ import VueRouter from "vue-router";
 import RouterPrefetch from 'vue-router-prefetch'
 import App from "./App";
 import router from "./router/index";
-
+window.axios= require ("axios");
 import BlackDashboard from "./plugins/blackDashboard";
 import i18n from "./i18n"
 import './registerServiceWorker'
