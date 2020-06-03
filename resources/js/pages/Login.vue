@@ -36,11 +36,25 @@
                     password: this.password
                 })
                     .then((response) => {
-                        console.log(response.data)
                         if (response.data) {
                             this.$store.commit('userUpdate', response.data.user);
                             this.$store.commit('authenticatedValue', true);
-                            localStorage.setItem('access_token', response.data.access_token);
+                            localStorage.setItem('access_token',response.data.access_token);
+                            axios.interceptors.request.use(
+                                (config) => {
+                                    let token = localStorage.getItem('access_token');
+
+                                    if (token) {
+                                        config.headers['Authorization'] = `Bearer ${ token }`;
+                                    }
+
+                                    return config;
+                                },
+
+                                (error) => {
+                                    return Promise.reject(error);
+                                }
+                            );
                             if (localStorage.getItem('lang') == null) {
                                 localStorage.setItem('lang', 'en');
                                 this.$i18n.locale = 'en';
@@ -55,8 +69,6 @@
                                     this.$rtl.disableRTL();
                                 }
                             }
-                            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token');
-                            this.$router.push('/dashboard');
                         }
                     }).catch((error) => {
                     if (error.response.status === 401) {

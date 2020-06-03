@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', 'AuthController@login');
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-
+Route::middleware('auth:api')->group(function(){
+    Route::get('/accounts','AccountController@index');
+    Route::post('/account/add','AccountController@index');
+    Route::put('/account/update/{account}','AccountController@index');
+    Route::post('/account/deactivate/{account}','AccountController@index');
 });

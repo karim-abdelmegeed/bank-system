@@ -22,6 +22,7 @@ class CreateAccountsTable extends Migration
             $table->string('branch');
             $table->string('account_number');
             $table->decimal('balance')->default(0);
+            $table->boolean('activated')->default(1);
             $table->timestamps();
         });
     }

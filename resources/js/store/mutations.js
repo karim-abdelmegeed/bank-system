@@ -7,7 +7,10 @@ export default{
     state.user=payload;
    },
    updateLang(state,lang){
-     state.lang=lang; 
+     state.lang=lang;
+   },
+   updateAccounts(state,data){
+       state.accounts=data;
    }
 }
 

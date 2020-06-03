@@ -8,5 +8,8 @@ export default {
   },
   lang :(state)=>{
     return state.lang;
+  },
+  accounts :(state)=>{
+    return state.accounts;
   }
 }

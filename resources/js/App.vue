@@ -1,6 +1,5 @@
 <template>
     <div v-if="authenticated">
-        <notifications></notifications>
         <router-view :key="$route.fullPath"></router-view>
     </div>
     <div v-else>
@@ -27,6 +26,7 @@
             }
         },
         mounted() {
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('access_token');
             this.$watch('$route', this.disableRTL, {immediate: true});
             this.$watch('$sidebar.showSidebar', this.toggleNavOpen)
         },
