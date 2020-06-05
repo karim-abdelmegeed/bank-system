@@ -17,8 +17,11 @@
         "vue": "^2.6.6",
         "vue-chartjs": "^3.4.0",
         "vue-i18n": "^8.8.1",
+        "vue-js-modal": "^2.0.0-rc.3",
+        "vue-multiselect": "^2.1.6",
         "vue-router": "^3.0.2",
         "vue-router-prefetch": "^1.4.0",
+        "vue-toastr": "^2.1.2",
         "vue2-transitions": "^0.2.3",
         "vuex": "^3.4.0",
         "vuex-persistedstate": "^2.7.1"

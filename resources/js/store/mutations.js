@@ -10,7 +10,20 @@ export default{
      state.lang=lang;
    },
    updateAccounts(state,data){
-       state.accounts=data;
-   }
+       state.accounts=data.data;
+       state.accountsTotal=data.total;
+   },
+    updateAccountsCurrentPage(state,data){
+        state.accountsCurrentPage=data;
+    },
+   updateAccountTypes(state,data){
+       state.accountTypes=data;
+   },
+   updateCurrencies(state,data){
+       state.currencies=data;
+   },
+   updateBanks(state,data){
+       state.banks=data;
+   },
 }
 

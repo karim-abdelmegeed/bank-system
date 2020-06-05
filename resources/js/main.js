@@ -8,9 +8,13 @@ window.axios= require ("axios");
 import BlackDashboard from "./plugins/blackDashboard";
 import i18n from "./i18n";
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import VModal from 'vue-js-modal'
+import VueToastr from "vue-toastr";
 
+Vue.use(VModal,{ dialog: true });
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
+Vue.use(VueToastr);
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';

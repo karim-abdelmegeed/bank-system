@@ -5,12 +5,11 @@ namespace App\Repositories;
 
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Auth;
 
 class Repository implements RepositoryInterface
 {
 
-    private $model;
+    protected $model;
 
     public function __construct(Model $model)
     {
@@ -19,17 +18,18 @@ class Repository implements RepositoryInterface
 
     public function get()
     {
-       return $this->model->where('user_id', Auth::id())->paginate(10);
+       return $this->model->orderBy('created_at','desc')->paginate(10);
     }
 
     public function create($data)
     {
-        // TODO: Implement create() method.
+        $this->model->create($data);
     }
 
-    public function update($data)
+    public function update($data,$account)
     {
-        // TODO: Implement update() method.
+        $account->update($data);
+
     }
 
     public function delete($id)

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Account;
+use App\Repositories\AccountRepository;
 use App\Repositories\Repository;
+use App\Rules\Positive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,7 +16,7 @@ class AccountController extends Controller
 
     public function __construct(Account $account)
     {
-        $this->repository = new Repository($account);
+        $this->repository = new AccountRepository($account);
     }
 
     public function index()
@@ -24,27 +26,36 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-        $this->validateData($request->all());
-        $this->repository->create($request->all());
+        $validator=$this->validateData($request->data);
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
+        }
+        $this->repository->create($request->data);
     }
 
     public function update(Request $request,Account $account)
     {
-        $this->validateData($request->all());
-        $this->repository->update($request->all());
+        $validator=$this->validateData($request->data);
+        if($validator->fails()){
+            return response()->json($validator->errors(), 422);
+        }
+        $this->repository->update($request->data,$account);
     }
 
     public function validateData($data)
     {
         $validator = Validator::make($data, [
-            "type" => "required"
+            "account_type_id" => "required|exists:account_types,id",
+            "bank_id" => "required|exists:banks,id",
+            "currency_id" => "required|exists:currencies,id",
+            "branch" => "required|min:6",
+            "account_number" => "required|numeric|min:15",
+            "balance" => [new Positive],
         ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
+       return $validator;
     }
 
-    public function deActivateAccount(Account $account)
+    public function deactivateAccount(Account $account)
     {
         $account->activated=0;
         $account->save();

@@ -15,9 +15,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', 'AuthController@login');
-Route::middleware('auth:api')->group(function(){
-    Route::get('/accounts','AccountController@index');
-    Route::post('/account/add','AccountController@index');
-    Route::put('/account/update/{account}','AccountController@index');
-    Route::post('/account/deactivate/{account}','AccountController@index');
+Route::middleware('auth:api')->group(function () {
+
+    //accounts routes
+
+    Route::get('/accounts', 'AccountController@index');
+    Route::post('/account/add', 'AccountController@store');
+    Route::put('/account/{account}/update', 'AccountController@update');
+    Route::post('/account/{account}/deactivate', 'AccountController@deactivateAccount');
+
+    //Currency routes
+    Route::get('/currencies', 'CurrencyController@index');
+    //bank routes
+    Route::get('/banks', 'BankController@index');
+    //account types routes
+    Route::get('/account_types', 'AccountTypeController@index');
+
+
 });
