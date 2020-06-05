@@ -14,10 +14,10 @@ class CreateCurrencyConversionsTable extends Migration
     public function up()
     {
         Schema::create('currency_conversions', function (Blueprint $table) {
-            $table->id();
-            $table->integer('bank_id');
-            $table->integer('from_currency');
-            $table->integer('to_currency');
+            $table->bigIncrements('id');
+            $table->bigInteger('bank_id');
+            $table->bigInteger('from_currency');
+            $table->bigInteger('to_currency');
             $table->decimal('rate');
             $table->timestamps();
         });

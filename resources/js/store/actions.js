@@ -2,13 +2,14 @@ import apiUrls from "../helpers/apiUrls";
 
 export default {
     accounts({commit}, page=1) {
-        axios.get(apiUrls.accounts(), {
+        return axios.get(apiUrls.accounts(), {
             params: {
                 page
             }
-        }).then((response) => {
-            commit('updateAccounts', response.data)
-        });
+        })
+        .then((response) => {
+            commit('updateAccounts', response.data);
+        })
     },
     accountTypes({commit}) {
         axios.get(apiUrls.accountTypes()).then((response) => {

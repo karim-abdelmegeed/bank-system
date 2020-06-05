@@ -8,9 +8,6 @@ export default {
     logout() {
         return makeUrl("/logout");
     },
-    checkAuth: () => {
-        return makeUrl("/token/check");
-    },
     accounts: () => {
         return makeUrl("/accounts");
     },

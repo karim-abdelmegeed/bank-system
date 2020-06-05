@@ -15,10 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', 'AuthController@login');
+
 Route::middleware('auth:api')->group(function () {
 
-    //accounts routes
+    Route::post('logout', 'AuthController@logout');
 
+    //accounts routes
     Route::get('/accounts', 'AccountController@index');
     Route::post('/account/add', 'AccountController@store');
     Route::put('/account/{account}/update', 'AccountController@update');

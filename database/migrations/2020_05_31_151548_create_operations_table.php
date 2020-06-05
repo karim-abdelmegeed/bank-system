@@ -14,7 +14,7 @@ class CreateOperationsTable extends Migration
     public function up()
     {
         Schema::create('operations', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->integer('transaction_id');
             $table->enum('type',['deposit','withdraw','transfer']);
             $table->decimal('amount');

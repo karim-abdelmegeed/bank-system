@@ -59,17 +59,20 @@
                                 localStorage.setItem('lang', 'en');
                                 this.$i18n.locale = 'en';
                                 this.$rtl.disableRTL();
-                            } else {
+                            }
+                            else {
                                 var lang = localStorage.getItem('lang');
                                 if (lang === "ar") {
                                     this.$i18n.locale = 'ar';
                                     this.$rtl.enableRTL();
-                                } else {
+                                }
+                                else {
                                     this.$i18n.locale = 'en';
                                     this.$rtl.disableRTL();
                                 }
                             }
                         }
+                        this.$router.push('accounts');
                     }).catch((error) => {
                     if (error.response.status === 401) {
                         toastr.error('Unauthorized check your email or password')

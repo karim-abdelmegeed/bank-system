@@ -20,7 +20,7 @@
             aria-controls="accounts"
         ></b-pagination>
         <accounts-modal></accounts-modal>
-        <v-dialog />
+        <v-dialog/>
     </div>
 </template>
 
@@ -63,7 +63,13 @@
             }
         },
         mounted() {
-            this.$store.dispatch('accounts');
+            this.$store.dispatch('accounts')
+                .catch(error => {
+                    if (error.response.status === 401) {
+                        this.$toastr.e("Unauthenticated");
+                        this.$router.push('login')
+                    }
+                });
         },
         computed: {
             accounts() {
@@ -72,11 +78,11 @@
             rows() {
                 return this.$store.getters.accountsTotal;
             },
-            currentPage:{
-                set(value){
-                    this.$store.commit('updateAccountsCurrentPage',value);
+            currentPage: {
+                set(value) {
+                    this.$store.commit('updateAccountsCurrentPage', value);
                 },
-                get(){
+                get() {
                     return this.$store.getters.currentPage;
                 }
             }
@@ -92,7 +98,7 @@
             deactivateAccount(row) {
                 this.showDialog(row)
             },
-            showDialog(row){
+            showDialog(row) {
                 this.$modal.show('dialog', {
                     title: 'Alert!',
                     text: 'Are you sure you want to deactivate account',
@@ -101,8 +107,8 @@
                             title: 'Yes',
                             handler: () => {
                                 let account = row.item;
-                                this.$store.dispatch('deactivateAccount', account.id).then(()=>{
-                                    row.item.activated=0
+                                this.$store.dispatch('deactivateAccount', account.id).then(() => {
+                                    row.item.activated = 0
                                     this.$modal.hide("dialog");
                                 });
                             }
@@ -114,9 +120,9 @@
                 })
             }
         },
-        watch:{
-            currentPage(){
-                this.$store.dispatch('accounts',this.currentPage);
+        watch: {
+            currentPage() {
+                this.$store.dispatch('accounts', this.currentPage);
             }
         }
 
