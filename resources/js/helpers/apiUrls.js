@@ -31,6 +31,18 @@ export default {
     },
     getBalance: () => {
         return makeUrl('/balance')
+    },
+    transactions: () => {
+        return makeUrl('/transactions')
+    },
+    doDeposit:()=>{
+        return makeUrl('/transaction/deposit')
+    },
+    doWithdraw:()=>{
+        return makeUrl('/transaction/withdraw')
+    },
+    doTransfer:()=>{
+        return makeUrl('/transaction/transfer')
     }
 
 };

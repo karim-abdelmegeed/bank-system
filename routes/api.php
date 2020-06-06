@@ -33,5 +33,10 @@ Route::middleware('auth:api')->group(function () {
     //account types routes
     Route::get('/account_types', 'AccountTypeController@index');
 
+    // Transactions routes
+    Route::get('/transactions','TransactionsController@index');
+    Route::post('/transaction/deposit','TransactionsController@doDeposit');
+    Route::post('/transactions/withdraw','TransactionsController@doWithdraw');
+    Route::post('/transactions/transfer','TransactionsController@doTransfer');
 
 });

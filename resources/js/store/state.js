@@ -7,4 +7,14 @@ export default {
     accountTypes: [],
     banks: [],
     currencies: [],
+    depositTransactions:[],
+    depositTransactionsTotal: null,
+    depositTransactionsCurrentPage: 1,
+    withdrawTransactions:[],
+    withdrawTransactionsTotal: null,
+    withdrawTransactionsCurrentPage: 1,
+    transferTransactions:[],
+    transferTransactionsTotal: null,
+    transferTransactionsCurrentPage: 1,
+
 }

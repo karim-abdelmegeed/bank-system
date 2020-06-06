@@ -1,5 +1,5 @@
 import apiUrls from "../helpers/apiUrls";
-
+import TransactionTypes from "../helpers/TransactionTypes";
 export default {
     accounts({commit}, page = 1) {
         return axios.get(apiUrls.accounts(), {
@@ -52,5 +52,26 @@ export default {
     },
     getBalance({commit}) {
         return axios.get(apiUrls.getBalance())
+    },
+    transactions({commit},data){
+        axios.get(apiUrls.transactions(),{
+            params:{
+                'type':data.type
+            }
+        }).then((response)=>{
+            console.log(response.data)
+            if(data.type===TransactionTypes.deposit()){
+                commit('updateDepositTransactions',response.data.data)
+                commit('updateDepositTransactionsTotal',response.data.total)
+            }
+            if(data.type===TransactionTypes.transfer()){
+                commit('updateTransferTransactions',response.data.data)
+                commit('updateTransferTransactionsTotal',response.data.total)
+            }
+            if(data.type===TransactionTypes.withdraw()){
+                commit('updateWithdrawTransactions',response.data.data)
+                commit('updateWithdrawTransactionsTotal',response.data.total)
+            }
+        })
     }
 }
