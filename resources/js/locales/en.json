@@ -2,7 +2,8 @@
   "sidebar": {
     "title": "Bank System",
     "shortTitle": "CT",
-    "accounts": "Accounts"
+    "accounts": "Accounts",
+    "balance": "Balance"
 
   }
 }
