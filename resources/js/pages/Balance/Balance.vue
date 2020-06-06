@@ -20,7 +20,7 @@
     import PieChart from "../../components/Charts/PieChart";
 
     export default {
-        name: "PieGraph",
+        name: "Balance",
         components: {PieChart},
         data() {
             return {

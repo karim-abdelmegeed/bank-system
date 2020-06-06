@@ -14,10 +14,10 @@ class AccountRepository extends Repository implements RepositoryInterface
     {
         parent::__construct($model);
     }
-
     public function get($request)
     {
         return $this->model
+            ->with(['accountType','bank','currency'])
             ->where('user_id', Auth::id())
             ->orderBy('created_at','desc')
             ->paginate(10);

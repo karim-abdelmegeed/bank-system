@@ -17,16 +17,24 @@ export default {
         });
     },
     banks({commit}, data) {
-        axios.get(apiUrls.banks(),
-            {
-                params: {
-                    "filter_by":data.filter_by,
-                    "filter_value":data.filter_value,
-                }
-            })
-            .then((response) => {
-            commit('updateBanks', response.data)
-        });
+        if (data) {
+            axios.get(apiUrls.banks(),
+                {
+                    params: {
+                        "filter_by": data.filter_by,
+                        "filter_value": data.filter_value,
+                    }
+                })
+                .then((response) => {
+                    commit('updateBanks', response.data)
+                });
+        } else {
+            axios.get(apiUrls.banks())
+                .then((response) => {
+                    commit('updateBanks', response.data.data)
+                });
+        }
+
     },
     currencies({commit}) {
         axios.get(apiUrls.currencies()).then((response) => {
