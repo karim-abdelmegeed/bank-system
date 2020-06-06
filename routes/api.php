@@ -25,7 +25,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/account/add', 'AccountController@store');
     Route::put('/account/{account}/update', 'AccountController@update');
     Route::post('/account/{account}/deactivate', 'AccountController@deactivateAccount');
-
+    Route::get('/balance','AccountController@getBalance');
     //Currency routes
     Route::get('/currencies', 'CurrencyController@index');
     //bank routes

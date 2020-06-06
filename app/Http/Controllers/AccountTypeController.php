@@ -15,8 +15,8 @@ class AccountTypeController extends Controller
         $this->repository = new Repository($accountType);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-      return $this->repository->get();
+      return $this->repository->get($request);
     }
 }

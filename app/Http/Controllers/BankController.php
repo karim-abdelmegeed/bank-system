@@ -15,8 +15,8 @@ class BankController extends Controller
         $this->repository = new Repository($bank);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->repository->get();
+        return $this->repository->get($request);
     }
 }

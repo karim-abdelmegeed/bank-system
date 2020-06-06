@@ -15,8 +15,8 @@ class CurrencyController extends Controller
         $this->repository = new Repository($currency);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->repository->get();
+        return $this->repository->get($request);
     }
 }

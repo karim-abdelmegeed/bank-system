@@ -16,9 +16,12 @@ class Repository implements RepositoryInterface
         $this->model = $model;
     }
 
-    public function get()
+    public function get($request)
     {
-       return $this->model->orderBy('created_at','desc')->paginate(10);
+        if ($request->has('filter_by') && $request->has('filter_value')) {
+            return $this->model->where($request->filter_by, $request->filter_value)->get();
+        }
+        return $this->model->orderBy('created_at', 'desc')->paginate(10);
     }
 
     public function create($data)
@@ -26,7 +29,7 @@ class Repository implements RepositoryInterface
         $this->model->create($data);
     }
 
-    public function update($data,$account)
+    public function update($data, $account)
     {
         $account->update($data);
 

@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Account extends Model
 {
-    protected $with = ['accountType', 'bank', 'currency'];
-    protected $fillable=['user_id','bank_id',
+//    protected $with = ['accountType', 'bank', 'currency'];
+
+    protected $fillable = ['user_id', 'bank_id',
         'currency_id',
         'account_type_id',
         'branch',

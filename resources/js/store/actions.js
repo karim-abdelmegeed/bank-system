@@ -1,24 +1,31 @@
 import apiUrls from "../helpers/apiUrls";
 
 export default {
-    accounts({commit}, page=1) {
+    accounts({commit}, page = 1) {
         return axios.get(apiUrls.accounts(), {
             params: {
                 page
             }
         })
-        .then((response) => {
-            commit('updateAccounts', response.data);
-        })
+            .then((response) => {
+                commit('updateAccounts', response.data);
+            })
     },
     accountTypes({commit}) {
         axios.get(apiUrls.accountTypes()).then((response) => {
             commit('updateAccountTypes', response.data.data)
         });
     },
-    banks({commit}) {
-        axios.get(apiUrls.banks()).then((response) => {
-            commit('updateBanks', response.data.data)
+    banks({commit}, data) {
+        axios.get(apiUrls.banks(),
+            {
+                params: {
+                    "filter_by":data.filter_by,
+                    "filter_value":data.filter_value,
+                }
+            })
+            .then((response) => {
+            commit('updateBanks', response.data)
         });
     },
     currencies({commit}) {
@@ -34,5 +41,8 @@ export default {
     },
     deactivateAccount({commit}, id) {
         return axios.post(apiUrls.deactivateAccount(id))
+    },
+    getBalance({commit}) {
+        return axios.get(apiUrls.getBalance())
     }
 }

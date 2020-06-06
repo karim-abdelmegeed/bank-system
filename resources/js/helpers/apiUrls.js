@@ -11,23 +11,26 @@ export default {
     accounts: () => {
         return makeUrl("/accounts");
     },
-    accountTypes:()=>{
+    accountTypes: () => {
         return makeUrl("/account_types");
     },
-    banks:()=>{
+    banks: () => {
         return makeUrl("/banks");
     },
-    currencies:()=>{
+    currencies: () => {
         return makeUrl("/currencies");
     },
-    addAccount:()=>{
+    addAccount: () => {
         return makeUrl("/account/add");
     },
-    updateAccount:(id)=>{
+    updateAccount: (id) => {
         return makeUrl(`/account/${id}/update`);
     },
-    deactivateAccount:(id)=>{
+    deactivateAccount: (id) => {
         return makeUrl(`/account/${id}/deactivate`);
     },
+    getBalance: () => {
+        return makeUrl('/balance')
+    }
 
 };

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Account;
 use App\Repositories\AccountRepository;
-use App\Repositories\Repository;
 use App\Rules\Positive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -19,9 +18,9 @@ class AccountController extends Controller
         $this->repository = new AccountRepository($account);
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        return $this->repository->get();
+        return $this->repository->get($request);
     }
 
     public function store(Request $request)
@@ -60,5 +59,9 @@ class AccountController extends Controller
         $account->activated=0;
         $account->save();
         return response()->json("account deactivated successfully",200);
+    }
+
+    public function getBalance(){
+        return $this->repository->getBalance();
     }
 }
