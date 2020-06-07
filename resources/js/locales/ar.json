@@ -1,8 +1,20 @@
 {
   "sidebar": {
-    "title": "توقيت الإبداعية",
-    "shortTitle": "ط م",
     "accounts": "الحسابات",
-    "balance": "الرصيد البنكى"
-  }
+    "balance": "الرصيد البنكى",
+    "transactions": "المعاملات"
+  },
+    "add_deposit_transaction": "اضافة معامله ايداع",
+    "deposit_transactions": "معاملات ايداع",
+    "transfer_transactions": "معاملات تحويل",
+    "withdraw_transactions": "معاملات سحب",
+    "add_transfer_transaction": "اضافة معامله سحب",
+    "add_withdraw_transaction":"اضافة معاملة ايداع",
+    "date": "التاريخ",
+    "bank": "البنك",
+    "amount_payed": "القيمة المدفوعة",
+    "payed_currency": "العمله المدفوع بها",
+    "account_balance": "رصيد الحساب",
+    "account_currency": "عملة الحساب"
+
 }

@@ -4,6 +4,7 @@
       <template slot="links">
         <sidebar-link to="/accounts" :name="$t('sidebar.accounts')" icon="tim-icons icon-chart-pie-36"/>
         <sidebar-link to="/balance" :name="$t('sidebar.balance')" icon="tim-icons icon-chart-pie-36"/>
+        <sidebar-link to="/transactions" :name="$t('sidebar.transactions')" icon="tim-icons icon-chart-pie-36"/>
       </template>
     </side-bar>
     <div class="main-panel">

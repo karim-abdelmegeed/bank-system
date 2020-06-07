@@ -1,6 +1,11 @@
 <template>
     <div>
-        <b-btn class="btn-info" @click="AddDepositTransactions()">Add Deposit Transaction</b-btn>
+        <div v-if="isRTL">
+         <b-btn class="btn-info" @click="AddDepositTransactions()" style="float: right">{{$t('add_deposit_transaction')}}</b-btn>
+        </div>
+        <div v-else>
+            <b-btn class="btn-info" @click="AddDepositTransactions()">{{$t('add_deposit_transaction')}}</b-btn>
+        </div>
         <b-table id="deposits" striped hover :items="depositTransactions" :fields="fields">
         </b-table>
         <b-pagination
@@ -25,27 +30,27 @@
                 fields: [
                     {
                         key: 'Date',
-                        label: 'Date'
+                        label: this.$t('date')
                     },
                     {
                         "key": "from_account.bank.name",
-                        "label": "Bank"
+                        "label": this.$t('bank')
                     },
                     {
                         "key": "amount",
-                        "label": "Amount Payed"
+                        "label": this.$t("amount_payed")
                     },
                     {
                         "key": "currency.name",
-                        "label": "payed Currency"
+                        "label": this.$t("payed_currency")
                     },
                     {
                         "key": "from_account.balance",
-                        "label": "Account Balance"
+                        "label": this.$t("account_balance")
                     },
                     {
                         "key": "from_account.currency.name",
-                        "label": "Account currency"
+                        "label": this.$t("account_currency")
                     }
                 ],
                 perPage: 10
@@ -66,11 +71,13 @@
                     return this.$store.getters.depositTransactionsCurrentPage;
                 }
             },
-
+            isRTL() {
+                return this.$rtl.isRTL;
+            },
         },
-        methods:{
-            AddDepositTransactions(){
-                this.$router.push({name:'transaction-add',params:{type:'deposit'}});
+        methods: {
+            AddDepositTransactions() {
+                this.$router.push({name: 'transaction-add', params: {type: 'deposit'}});
             }
         }
     }

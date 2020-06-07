@@ -1,6 +1,11 @@
 <template>
     <div>
-        <b-btn class="btn-info" @click="AddTransferTransactions()">Add Transfer Transaction</b-btn>
+        <div v-if="isRTL">
+         <b-btn class="btn-info" style="float: right" @click="AddTransferTransactions()">{{$t('add_transfer_transaction')}}</b-btn>
+        </div>
+        <div v-else>
+            <b-btn class="btn-info" @click="AddTransferTransactions()">{{$t('add_transfer_transaction')}}</b-btn>
+        </div>
         <b-table id="transfers" striped hover :items="transferTransactions" :fields="fields">
         </b-table>
         <b-pagination
@@ -52,7 +57,7 @@
             }
         },
         computed: {
-            depositTransactions() {
+            transferTransactions() {
                 return this.$store.getters.transferTransactions
             },
             rows() {
@@ -66,6 +71,10 @@
                     return this.$store.getters.transferTransactionsCurrentPage;
                 }
             },
+            isRTL() {
+                return this.$rtl.isRTL;
+            },
+
 
         },
         methods: {

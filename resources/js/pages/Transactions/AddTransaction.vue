@@ -30,7 +30,7 @@
                         <label>select Account to transfer</label>
                         <multiselect v-model="selectedAccountTo"
                                      :options="accounts"
-                                      :searchable="true"
+                                     :searchable="true"
                                      :allow-empty="false"
                                      label="account_number"
                         >
@@ -56,7 +56,7 @@
                 </div>
                 <div class="card-footer"></div>
             </div>
-            <b-btn class="btn btn-info"@click="submit">submit transaction</b-btn>
+            <b-btn class="btn btn-info" @click="submit">submit transaction</b-btn>
 
         </div>
     </div>
@@ -71,25 +71,25 @@
         components: {Multiselect},
         data() {
             return {
-                operationType:null,
+                operationType: null,
                 currencyError: null,
                 accountsError: null,
                 amountError: null,
                 amount: [],
                 selectedCurrency: [],
                 selectedAccount: null,
-                selectedAccountTo:null,
-                operations:1,
-                show:false
+                selectedAccountTo: null,
+                operations: 1,
+                show: false
             }
         },
         mounted() {
-         this.operationType=this.$route.params.type
-            if(this.operationType==="transfer"){
-                this.show=true
+            this.operationType = this.$route.params.type
+            if (this.operationType === "transfer") {
+                this.show = true
             }
 
-         this.$store.dispatch('accounts');
+            this.$store.dispatch('accounts');
         },
         computed: {
             currencies() {
@@ -98,40 +98,38 @@
             user() {
                 return this.$store.getters.user;
             },
-            accounts(){
+            accounts() {
                 return this.$store.getters.accounts;
             }
         },
-        methods:{
-            addOperation(){
+        methods: {
+            addOperation() {
                 this.operations++;
             },
-            submit(){
-                if(this.operationType==="deposit"||this.operationType==="withdraw")
-                var selectedCurrency=this.selectedCurrency.map((currency)=>{
+            submit() {
+                var selectedCurrency = this.selectedCurrency.map((currency) => {
                     return currency.id
                 });
-                var data={
-                    'amount':this.amount,
-                    'currency_id':selectedCurrency,
-                    'from_account':this.selectedAccount
+                var data = {
+                    'amount': this.amount,
+                    'currency_id': selectedCurrency,
+                    'from_account': this.selectedAccount,
+                    'to_account': this.selectedAccountTo
                 }
-                if(this.operationType==="withdraw"){
-                    this.$store.dispatch('doWithdraw',{data}).then((response)=>{
+                if (this.operationType === "withdraw") {
+                    this.$store.dispatch('doWithdraw', {data}).then((response) => {
+                        this.$toastr.s("operation is done successfully")
+                    });
+                } else if (this.operationType === "deposit") {
+                    this.$store.dispatch('doDeposit', {data}).then((response) => {
+                        this.$toastr.s("operation is done successfully")
+                    });
+                } else {
+                    this.$store.dispatch('doTransfer', {data}).then((response) => {
                         this.$toastr.s("operation is done successfully")
                     });
                 }
-                else if(this.operationType==="deposit"){
-                    this.$store.dispatch('doDeposit',{data}).then((response)=>{
-                        this.$toastr.s("operation is done successfully")
-                    });
-                }
-                else{
-                    this.$store.dispatch('doTransfer',{data}).then((response)=>{
-                        this.$toastr.s("operation is done successfully")
-                    });
-                }
-                this.$router.push({'name':'transactions'});
+                this.$router.push({'name': 'transactions'});
 
             }
 

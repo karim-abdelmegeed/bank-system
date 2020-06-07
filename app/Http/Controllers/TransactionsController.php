@@ -30,6 +30,7 @@ class TransactionsController extends Controller
     {
         return $this->repository->doDeposit($request->data);
     }
+
     public function doTransfer(Request $request)
     {
         return $this->repository->doTransfer($request->data);

@@ -1,15 +1,15 @@
 <template>
     <div>
         <div>
-            <label class="label"> Deposit Transactions</label>
-            <deposit-transactions></deposit-transactions>
+            <label class="label">{{$t('deposit_transactions')}}</label>
+                <deposit-transactions></deposit-transactions>
         </div>
         <div>
-            <label class="label"> Withdraw Transactions</label>
+            <label class="label"> {{$t('withdraw_transactions')}}</label>
             <with-draw-transactions></with-draw-transactions>
         </div>
         <div>
-            <label class="label"> Transfer Transactions</label>
+            <label class="label">{{$t('transfer_transactions')}}</label>
             <TransferTransactions></TransferTransactions>
         </div>
     </div>
@@ -22,7 +22,12 @@
 
     export default {
         name: "Transactions",
-        components: {TransferTransactions, WithDrawTransactions, DepositTransactions}
+        components: {TransferTransactions, WithDrawTransactions, DepositTransactions},
+       computed:{
+           isRTL() {
+               return this.$rtl.isRTL;
+           }
+       }
     }
 </script>
 

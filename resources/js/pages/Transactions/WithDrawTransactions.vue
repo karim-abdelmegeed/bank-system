@@ -1,6 +1,11 @@
 <template>
     <div>
-        <b-btn class="btn-info" @click="AddWithDrawTransactions()">Add Withdraw Transaction</b-btn>
+        <div v-if="isRTL">
+            <b-btn class="btn-info" style="float: right" @click="AddWithDrawTransactions()">{{$t('add_withdraw_transaction')}}</b-btn>
+        </div>
+        <div v-else>
+            <b-btn class="btn-info" @click="AddWithDrawTransactions()">{{$t('add_withdraw_transaction')}}</b-btn>
+        </div>
         <b-table id="withdraw" striped hover :items="withdrawTransactions" :fields="fields">
         </b-table>
         <b-pagination
@@ -64,7 +69,11 @@
                 get() {
                     return this.$store.getters.withdrawTransactionsCurrentPage;
                 }
-            }
+            },
+            isRTL() {
+                return this.$rtl.isRTL;
+            },
+
 
         },
         methods:{

@@ -1,9 +1,19 @@
 {
-  "sidebar": {
-    "title": "Bank System",
-    "shortTitle": "CT",
-    "accounts": "Accounts",
-    "balance": "Balance"
-
-  }
+    "sidebar": {
+        "accounts": "Accounts",
+        "balance": "Balance",
+        "transactions": "Transactions"
+    },
+    "add_deposit_transaction": "Add Deposit Transaction",
+    "deposit_transactions": "Deposit Transactions",
+    "transfer_transactions": "Transfer Transactions",
+    "withdraw_transactions": "Withdraw Transactions",
+    "add_transfer_transaction": "Add Transfer Transaction",
+    "add_withdraw_transaction": "Add Withdraw Transaction",
+    "date": "Date",
+    "bank": "Bank",
+    "amount_payed": "Amount Payed",
+    "payed_currency": "Currency Payed",
+    "account_balance": "Account Balance",
+    "account_currency": "Account Currency"
 }

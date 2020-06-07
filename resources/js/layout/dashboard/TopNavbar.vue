@@ -66,6 +66,16 @@
             CollapseTransition,
             Modal
         },
+        beforeMount() {
+          if(localStorage.getItem('lang')==="ar"){
+              this.$rtl.enableRTL();
+              this.$i18n.locale="ar";
+          }
+          else{
+              this.$rtl.disableRTL();
+              this.$i18n.locale="en";
+          }
+        },
         data() {
             return {
                 showMenu: false
@@ -109,7 +119,13 @@
                 });
             },
             switchLanguage() {
-                this.isRTL ? this.$rtl.disableRTL() : this.$rtl.enableRTL();
+                if(this.isRTL) {
+                    localStorage.setItem('lang','en');
+                }
+                else{
+                    localStorage.setItem('lang','ar');
+                }
+                window.location.href=this.$route.path
             }
         }
     };

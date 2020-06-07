@@ -18,6 +18,7 @@
             disableRTL() {
                 if (!this.$rtl.isRTL) {
                     this.$rtl.disableRTL();
+                    this.$i18n.locale='en';
                 }
             },
             toggleNavOpen() {
