@@ -4,6 +4,7 @@ import Accounts from "../pages/Accounts/Accounts";
 import Login from "../pages/Login";
 import PieGraph from "../pages/Balance/Balance";
 import Transactions from "../pages/Transactions/Transactions";
+import AddTransaction from "../pages/Transactions/AddTransaction";
 
 const routes = [
     {
@@ -25,7 +26,12 @@ const routes = [
                 path: "/transactions",
                 name: "transactions",
                 component: Transactions
-            }
+            },
+            {
+                path: "/transaction/add/:type",
+                name: "transaction-add",
+                component: AddTransaction
+            },
 
         ]
 

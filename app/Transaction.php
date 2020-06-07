@@ -32,6 +32,6 @@ class Transaction extends Model
 
     public function getDateAttribute()
     {
-        return $this->created_at;
+        return $this->created_at->format('y-m-d');
     }
 }

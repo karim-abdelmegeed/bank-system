@@ -14,7 +14,6 @@
 
 <script>
     import TransactionTypes from "../../helpers/TransactionTypes";
-
     export default {
         name: "WithDrawTransactions",
         mounted() {
@@ -23,6 +22,10 @@
         data() {
             return {
                 fields: [
+                    {
+                        key:"Date",
+                        label: "Date"
+                    },
                     {
                         "key": "from_account.bank.name",
                         "label": "Bank"
@@ -66,7 +69,7 @@
         },
         methods:{
             AddWithDrawTransactions(){
-                this.$modal.show('withdraw-modal');
+             this.$router.push({name:'transaction-add', params: {type: 'withdraw'}})
             }
         }
     }

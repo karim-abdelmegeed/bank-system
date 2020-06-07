@@ -36,13 +36,13 @@ export default {
         return makeUrl('/transactions')
     },
     doDeposit:()=>{
-        return makeUrl('/transaction/deposit')
+        return makeUrl('/transactions/deposit')
     },
     doWithdraw:()=>{
-        return makeUrl('/transaction/withdraw')
+        return makeUrl('/transactions/withdraw')
     },
     doTransfer:()=>{
-        return makeUrl('/transaction/transfer')
+        return makeUrl('/transactions/transfer')
     }
 
 };

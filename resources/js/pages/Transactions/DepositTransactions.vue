@@ -24,7 +24,7 @@
             return {
                 fields: [
                     {
-                        key: 'date',
+                        key: 'Date',
                         label: 'Date'
                     },
                     {
@@ -66,12 +66,12 @@
                     return this.$store.getters.depositTransactionsCurrentPage;
                 }
             },
-            methods:{
-                AddDepositTransactions(){
-                    
-                }
-            }
 
+        },
+        methods:{
+            AddDepositTransactions(){
+                this.$router.push({name:'transaction-add',params:{type:'deposit'}});
+            }
         }
     }
 </script>
