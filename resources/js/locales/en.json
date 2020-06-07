@@ -15,5 +15,13 @@
     "amount_payed": "Amount Payed",
     "payed_currency": "Currency Payed",
     "account_balance": "Account Balance",
-    "account_currency": "Account Currency"
+    "account_currency": "Account Currency",
+    "add_account": "Add Account",
+    "deactivate": "Deactivate",
+    "account_type": "Account Type",
+    "balance": "Balance",
+    "currency": "Currency",
+    "branch": "Branch",
+    "account_number": "Account Number",
+    "edit": "Edit"
 }

@@ -1,14 +1,19 @@
 <template>
     <div class="row">
-        <button class="btn btn-outline-info" @click="addAccount">Add Account</button>
-        <b-table id="accounts" striped hover :items="accounts" :fields="fields">
+        <div v-if="isRTL">
+           <button class="btn btn-outline-info" style="float: right" @click="addAccount">{{$t('add_account')}}</button>
+        </div>
+        <div v-else>
+            <button class="btn btn-outline-info" @click="addAccount">{{$t('add_account')}}</button>
+        </div>
+            <b-table id="accounts" striped hover :items="accounts" :fields="fields">
             <template v-slot:cell(actions)="row">
-                <button class="btn btn-sm btn-info" @click="editAccount(row)">Edit</button>
+                <button class="btn btn-sm btn-info" @click="editAccount(row)">{{$t('edit')}}</button>
                 <div v-if="row.item.activated===1">
                     <button class="btn btn-sm btn-danger"
                             v-show="row.item.activated===1"
                             @click="deactivateAccount(row)">
-                        Deactivate
+                        {{$t("deactivate")}}
                     </button>
                 </div>
             </template>
@@ -35,27 +40,27 @@
                 fields: [
                     {
                         "key": "bank.name",
-                        "label": "Bank"
+                        "label": this.$t('bank')
                     },
                     {
                         "key": "account_type.name",
-                        "label": "Account Type"
+                        "label": this.$t('account_type')
                     },
                     {
                         "key": "balance",
-                        "label": "Balance"
+                        "label": this.$t('balance')
                     },
                     {
                         "key": "currency.name",
-                        "label": "Currency"
+                        "label":this.$t('currency')
                     },
                     {
                         "key": "branch",
-                        "label": "Branch"
+                        "label": this.$t('branch')
                     },
                     {
                         "key": "account_number",
-                        "label": "Account Number"
+                        "label": this.$t('account_number')
                     },
                     {key: 'actions', label: 'Actions'}
                 ],
@@ -85,7 +90,10 @@
                 get() {
                     return this.$store.getters.currentPage;
                 }
-            }
+            },
+            isRTL() {
+                return this.$rtl.isRTL;
+            },
         },
         methods: {
             addAccount() {

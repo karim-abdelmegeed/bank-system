@@ -15,6 +15,15 @@
     "amount_payed": "القيمة المدفوعة",
     "payed_currency": "العمله المدفوع بها",
     "account_balance": "رصيد الحساب",
-    "account_currency": "عملة الحساب"
+    "account_currency": "عملة الحساب",
+    "add_account": "اضافة حساب",
+    "deactivate": "تعطيل الحساب",
+    "account_type": "نوع الحساب",
+    "balance": "الرصيد",
+    "currency": "العمله",
+    "branch": "الفرع",
+    "account_number": "رقم الحساب",
+    "edit": "تعديل"
+
 
 }

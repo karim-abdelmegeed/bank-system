@@ -5,3 +5,4 @@ Installation short guide
 3- php artisan migrate
 4-php artisan passport:install --uuids
 5-php artisan db:seed
+6-npm run watch
