@@ -6,6 +6,8 @@ namespace App\Repositories;
 
 use App\Account;
 use App\CurrencyConversion;
+use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class TransactionRepository extends Repository
@@ -91,6 +93,31 @@ class TransactionRepository extends Repository
         $account->save();
     }
 
+    public function transferRollback($id){
+       $transaction= Transaction::find($id);
+        $hours=Carbon::now()->diffInHours(Carbon::parse($transaction->created_at));
+         if($hours<=36){
+             $operation=$transaction->operations()->first();
+             $amount=$operation->amount;
+             $currency=$operation->currency_id;
+             $from_account=$transaction->from_account_id;
+             $to_account=$transaction->to_account_id;
+             $amount=$this->currencyConvert($from_account,$amount,$currency);
+             $account_from=Account::find($from_account);
+             $account_from->balance+=$amount;
+             $account_from->save();
+             $amount=$this->currencyConvert($to_account,$amount,$currency);
+             $account_to=Account::find($to_account);
+             $account_to->balance-=$amount;
+             $account_to->save();
+             $transaction->operations()->delete();
+             return response()->json('transfer rollback successfully',200);
+         }
+         else{
+             return response()->json('too late to rollback transfer',422);
+         }
+    }
+    //convert currency to account currency
     public function currencyConvert($account_id, $amount, $currency)
     {
         $account = Account::find($account_id);

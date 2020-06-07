@@ -7,6 +7,9 @@
             <b-btn class="btn-info" @click="AddTransferTransactions()">{{$t('add_transfer_transaction')}}</b-btn>
         </div>
         <b-table id="transfers" striped hover :items="transferTransactions" :fields="fields">
+            <template v-slot:cell(action)="row">
+                <button class="btn btn-sm btn-warning" @click="rollback(row)">Transfer Rollback</button>
+            </template>
         </b-table>
         <b-pagination
             v-model="currentPage"
@@ -51,6 +54,10 @@
                     {
                         "key": "from_account.currency.name",
                         "label": "Account currency"
+                    },
+                    {
+                        "key":"action",
+                        "label":"Action"
                     }
                 ],
                 perPage: 10
@@ -80,6 +87,15 @@
         methods: {
             AddTransferTransactions() {
                 this.$router.push({name: 'transaction-add', params: {type: 'transfer'}});
+            },
+            rollback(row){
+                console.log(row);
+                this.$store.dispatch('transferRollback',row.item.transaction_id).then((response)=>{
+                    this.$store.dispatch('transactions', {type: TransactionTypes.transfer()});
+                    this.$toastr.s(response.data)
+                }).catch((e)=>{
+                    this.$toastr.r(e.response.data)
+                });
             }
         }
     }

@@ -38,5 +38,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/transactions/deposit','TransactionsController@doDeposit');
     Route::post('/transactions/withdraw','TransactionsController@doWithdraw');
     Route::post('/transactions/transfer','TransactionsController@doTransfer');
+    Route::get('/transactions/transfer/rollback','TransactionsController@transferRollback');
 
 });

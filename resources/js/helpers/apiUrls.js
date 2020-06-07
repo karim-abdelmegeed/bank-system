@@ -43,6 +43,10 @@ export default {
     },
     doTransfer:()=>{
         return makeUrl('/transactions/transfer')
-    }
+    },
+    transferRollback:()=>{
+        return makeUrl('/transactions/transfer/rollback')
+    },
+
 
 };

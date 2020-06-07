@@ -78,10 +78,13 @@ export default {
     doWithdraw({commit}, data) {
         return axios.post(apiUrls.doWithdraw(), {data});
     },
-    doDeposit({commit},data){
-        return axios.post(apiUrls.doDeposit(),{data});
+    doDeposit({commit}, data) {
+        return axios.post(apiUrls.doDeposit(), {data});
     },
-    doTransfer({commit},data){
-        return axios.post(apiUrls.doTransfer(),{data});
+    doTransfer({commit}, data) {
+        return axios.post(apiUrls.doTransfer(), {data});
+    },
+    transferRollback({commit}, id) {
+        return axios.get(apiUrls.transferRollback(), {params: {id}})
     }
 }
